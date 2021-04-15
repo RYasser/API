@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos front</title>
+    
+</head>
+<body>
+    <h1>Lista de Pessoas</h1>
+    <ul>
+        
+    </ul>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script>
+    let ul = document.getElementsByTagName('ul')[0]
+
+    axios.get('http://localhost:3000/api/v1/pessoas')
+
+        .then(resp => resp.data)
+            .then(data => data.map(pessoa => {
+                let linha = document.createElement('ol')
+                linha.innerHTML = `Nome: ${pessoa.nome} idade: ${pessoa.idade}`
+                ul.appendChild(linha)
+            }))
+        .catch(error => console.log(error))
+        
+</script>
+</html>
